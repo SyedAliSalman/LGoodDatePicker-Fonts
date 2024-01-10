@@ -35,10 +35,11 @@ import com.github.lgooddatepicker.zinternaltools.TranslationSource;
 import com.privatejgoodies.forms.layout.ColumnSpec;
 import com.privatejgoodies.forms.layout.ConstantSize;
 import com.privatejgoodies.forms.layout.FormLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Point;
+
+import java.awt.*;
 import java.awt.font.TextAttribute;
+import java.io.File;
+import java.io.IOException;
 import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -658,33 +659,47 @@ public class DatePickerSettings {
 
     // Generate the default fonts and text colors.
     // The font object is immutable, so it's okay to sign the same font to multiple settings.
-    Font defaultLabelFont = new JLabel().getFont();
-    fontClearLabel = defaultLabelFont;
-    fontCalendarDateLabels = defaultLabelFont;
-    fontCalendarWeekdayLabels = defaultLabelFont;
-    fontCalendarWeekNumberLabels = defaultLabelFont;
-    fontMonthAndYearMenuLabels = defaultLabelFont;
-    fontTodayLabel = defaultLabelFont;
-    Font defaultButtonFont = new JButton().getFont();
-    fontMonthAndYearNavigationButtons = defaultButtonFont;
-    Font defaultTextFieldFont = new JTextField().getFont();
-    fontValidDate = defaultTextFieldFont;
-    fontInvalidDate = defaultTextFieldFont;
-    fontVetoedDate = defaultTextFieldFont;
 
-    Map<TextAttribute, Boolean> additionalAttributes = new HashMap<>();
-    additionalAttributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
-    fontVetoedDate = fontVetoedDate.deriveFont(additionalAttributes);
+    // Load TTF file
+    File ttfFile = new File("font/nunito_sans_normal.ttf");
+    try{
+      Font customFont = loadFont(ttfFile, 12); // Specify the font size
+      // Register the font
+      registerFont(customFont);
 
-    // Set the default border properties.
-    // (Setting this to null will create and save, (and apply when needed) a default set of
-    // border properties. I don't think there would be any parent to apply them to when called
-    // from the DatePickerSettings constructor though.)
-    setBorderPropertiesList(null);
+      // Create a Font instance
+      Font defaultLabelFont = new Font(customFont.getFontName(), Font.PLAIN, 16); // Adjust size and style as needed
 
-    // Save the date picker locale.
-    // This will also change all settings that most directly depend on the locale.
-    setLocale(pickerLocale);
+//      Font defaultLabelFont = new JLabel().getFont();
+      fontClearLabel = defaultLabelFont;
+      fontCalendarDateLabels = defaultLabelFont;
+      fontCalendarWeekdayLabels = defaultLabelFont;
+      fontCalendarWeekNumberLabels = defaultLabelFont;
+      fontMonthAndYearMenuLabels = defaultLabelFont;
+      fontTodayLabel = defaultLabelFont;
+      Font defaultButtonFont = new JButton().getFont();
+      fontMonthAndYearNavigationButtons = defaultButtonFont;
+      Font defaultTextFieldFont = new JTextField().getFont();
+      fontValidDate = defaultTextFieldFont;
+      fontInvalidDate = defaultTextFieldFont;
+      fontVetoedDate = defaultTextFieldFont;
+
+      Map<TextAttribute, Boolean> additionalAttributes = new HashMap<>();
+      additionalAttributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
+      fontVetoedDate = fontVetoedDate.deriveFont(additionalAttributes);
+
+      // Set the default border properties.
+      // (Setting this to null will create and save, (and apply when needed) a default set of
+      // border properties. I don't think there would be any parent to apply them to when called
+      // from the DatePickerSettings constructor though.)
+      setBorderPropertiesList(null);
+
+      // Save the date picker locale.
+      // This will also change all settings that most directly depend on the locale.
+      setLocale(pickerLocale);
+    } catch (IOException | FontFormatException e) {
+      e.printStackTrace();
+    }
   }
 
   /**
@@ -2384,4 +2399,13 @@ public class DatePickerSettings {
       parentCalendarPanel.setSelectedDate(dateValue);
     }
   }
+
+    private static Font loadFont(File fontFile, float size) throws IOException, FontFormatException {
+      return Font.createFont(Font.TRUETYPE_FONT, fontFile).deriveFont(size);
+    }
+
+    private static void registerFont(Font font) {
+      GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+      ge.registerFont(font);
+    }
 }
