@@ -39,6 +39,8 @@ import com.privatejgoodies.forms.layout.FormLayout;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -660,8 +662,8 @@ public class DatePickerSettings {
     // The font object is immutable, so it's okay to sign the same font to multiple settings.
 
     try{
-      InputStream myStream = new BufferedInputStream(new FileInputStream("nunito_sans_normal.ttf"));
-      Font customFont = Font.createFont(Font.TRUETYPE_FONT, myStream).deriveFont(12);
+      InputStream myStream = new BufferedInputStream(Files.newInputStream(Paths.get("nunito_sans_normal.ttf")));
+      Font customFont = Font.createFont(Font.TRUETYPE_FONT, myStream).deriveFont(16);
       // Register the font
       registerFont(customFont);
 
@@ -669,18 +671,18 @@ public class DatePickerSettings {
       Font defaultLabelFont = new Font(customFont.getFontName(), Font.PLAIN, 16); // Adjust size and style as needed
 
 //      Font defaultLabelFont = new JLabel().getFont();
-      fontClearLabel = defaultLabelFont;
-      fontCalendarDateLabels = defaultLabelFont;
-      fontCalendarWeekdayLabels = defaultLabelFont;
-      fontCalendarWeekNumberLabels = defaultLabelFont;
-      fontMonthAndYearMenuLabels = defaultLabelFont;
-      fontTodayLabel = defaultLabelFont;
+      fontClearLabel = customFont;
+      fontCalendarDateLabels = customFont;
+      fontCalendarWeekdayLabels = customFont;
+      fontCalendarWeekNumberLabels = customFont;
+      fontMonthAndYearMenuLabels = customFont;
+      fontTodayLabel = customFont;
       Font defaultButtonFont = new JButton().getFont();
-      fontMonthAndYearNavigationButtons = defaultButtonFont;
+      fontMonthAndYearNavigationButtons = customFont;
       Font defaultTextFieldFont = new JTextField().getFont();
-      fontValidDate = defaultTextFieldFont;
-      fontInvalidDate = defaultTextFieldFont;
-      fontVetoedDate = defaultTextFieldFont;
+      fontValidDate = customFont;
+      fontInvalidDate = customFont;
+      fontVetoedDate = customFont;
 
       Map<TextAttribute, Boolean> additionalAttributes = new HashMap<>();
       additionalAttributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
