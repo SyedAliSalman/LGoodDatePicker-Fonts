@@ -660,7 +660,7 @@ public class DatePickerSettings {
     // The font object is immutable, so it's okay to sign the same font to multiple settings.
 
     try{
-      InputStream myStream = new BufferedInputStream(new FileInputStream("font/nunito_sans_normal.ttf"));
+      InputStream myStream = new BufferedInputStream(new FileInputStream("nunito_sans_normal.ttf"));
       Font customFont = Font.createFont(Font.TRUETYPE_FONT, myStream).deriveFont(12);
       // Register the font
       registerFont(customFont);
