@@ -49,11 +49,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.FormatStyle;
 import java.time.temporal.WeekFields;
-import java.util.ArrayList;
-import java.util.EnumMap;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -662,8 +658,9 @@ public class DatePickerSettings {
     // The font object is immutable, so it's okay to sign the same font to multiple settings.
 
     try{
-      InputStream myStream = new BufferedInputStream(Files.newInputStream(Paths.get("nunito_sans_normal.ttf")));
-      Font customFont = Font.createFont(Font.TRUETYPE_FONT, myStream).deriveFont(16);
+
+//      InputStream myStream = new BufferedInputStream(Files.newInputStream(Paths.get("nunito_sans_normal.ttf")));
+      Font customFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(this.getClass().getResourceAsStream("/nunito_sans_normal.ttf"))).deriveFont(Font.PLAIN, 14);
       // Register the font
       registerFont(customFont);
 
