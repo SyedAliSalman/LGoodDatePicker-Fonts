@@ -38,8 +38,7 @@ import com.privatejgoodies.forms.layout.FormLayout;
 
 import java.awt.*;
 import java.awt.font.TextAttribute;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -660,10 +659,9 @@ public class DatePickerSettings {
     // Generate the default fonts and text colors.
     // The font object is immutable, so it's okay to sign the same font to multiple settings.
 
-    // Load TTF file
-    File ttfFile = new File("font/nunito_sans_normal.ttf");
     try{
-      Font customFont = loadFont(ttfFile, 12); // Specify the font size
+      InputStream myStream = new BufferedInputStream(new FileInputStream("font/nunito_sans_normal.ttf"));
+      Font customFont = Font.createFont(Font.TRUETYPE_FONT, myStream).deriveFont(12);
       // Register the font
       registerFont(customFont);
 
