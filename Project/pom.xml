@@ -192,7 +192,7 @@ plugins in this file operate inside the "package" and "install" phases.
             <resource>
                 <!-- This turns on resource filtering so we can get the version number at runtime. -->
                 <directory>src/main/resources</directory>
-                <filtering>true</filtering>
+                <filtering>false</filtering>
             </resource>
         </resources>
 
