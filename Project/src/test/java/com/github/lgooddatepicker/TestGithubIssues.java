@@ -67,7 +67,7 @@ public class TestGithubIssues {
       TestHelpers.registerUncaughtExceptionHandlerToAllThreads(
           (thread, throwable) -> exInfo.set(thread.getName(), throwable));
       try (AutoDisposeFrame testWin = new AutoDisposeFrame()) {
-        DatePicker date_picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH));
+        DatePicker date_picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont()));
         testWin.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         testWin.add(date_picker);
         testWin.pack();
@@ -98,7 +98,7 @@ public class TestGithubIssues {
 
   @Test(expected = Test.None.class /* no exception expected */)
   public void TestIssue76() {
-    DatePickerSettings dateSettingsPgmDate = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings dateSettingsPgmDate = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     dateSettingsPgmDate.setAllowEmptyDates(true);
     dateSettingsPgmDate.getFormatsForParsing().clear();
     DateTimeFormatter dateFormatter =
@@ -133,7 +133,7 @@ public class TestGithubIssues {
   @Test(expected = Test.None.class /* no exception expected */)
   public void TestIssue74() {
     DateTimeFormatter era_date = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    DatePicker date_picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH));
+    DatePicker date_picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont()));
     date_picker.getSettings().getFormatsForParsing().clear();
     date_picker.getSettings().setFormatForDatesCommonEra(era_date);
     AssertDateTextValidity(date_picker, "12/31/2019", false);
@@ -145,7 +145,7 @@ public class TestGithubIssues {
   @Test(expected = Test.None.class /* no exception expected */)
   public void TestIssue60() {
     DateTimeFormatter era_date = DateTimeFormatter.ofPattern("ddMMyyyy");
-    DatePicker date_picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH));
+    DatePicker date_picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont()));
     date_picker.getSettings().getFormatsForParsing().clear();
     date_picker.getSettings().setFormatForDatesCommonEra(era_date);
     AssertDateTextValidity(date_picker, "30 04 2019", false);
@@ -167,7 +167,7 @@ public class TestGithubIssues {
     }
     org.junit.Assume.assumeTrue(TestHelpers.isUiAvailable());
 
-    DatePickerSettings dateSettings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings dateSettings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     CalendarPanel testPanel = new CalendarPanel(dateSettings);
 
     try (AutoDisposeFrame testWin = new AutoDisposeFrame()) {
@@ -330,7 +330,7 @@ public class TestGithubIssues {
     org.junit.Assume.assumeTrue(TestHelpers.isUiAvailable());
 
     // Verify year editing is finihed when enter key is pressed while focusing
-    DatePickerSettings dateSettings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings dateSettings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     CalendarPanel testPanel = new CalendarPanel(dateSettings);
 
     try (AutoDisposeFrame testWin = new AutoDisposeFrame()) {

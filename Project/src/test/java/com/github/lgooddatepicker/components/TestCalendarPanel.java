@@ -69,7 +69,7 @@ public class TestCalendarPanel {
         "Month must be the month of today",
         defaultDateNeverNull.getMonthValue() == LocalDate.now().getMonthValue());
 
-    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     settings.setClock(TestHelpers.getClockFixedToInstant(1995, Month.OCTOBER, 31, 0, 0));
     panel = new CalendarPanel(settings);
     defaultDateNeverNull = panel.getDisplayedYearMonth();
@@ -85,7 +85,7 @@ public class TestCalendarPanel {
           IllegalAccessException,
           NoSuchMethodException,
           InvocationTargetException {
-    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     CalendarPanel panel = new CalendarPanel(settings);
 
     final Color generalHighlight =
@@ -130,7 +130,7 @@ public class TestCalendarPanel {
           IllegalAccessException,
           NoSuchMethodException,
           InvocationTargetException {
-    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     settings.setColor(DatePickerSettings.DateArea.BackgroundCalendarPanelLabelsOnHover, Color.red);
     settings.setColor(DatePickerSettings.DateArea.TextCalendarPanelLabelsOnHover, Color.yellow);
     CalendarPanel panel = new CalendarPanel(settings);
@@ -231,7 +231,7 @@ public class TestCalendarPanel {
           IllegalAccessException,
           NoSuchMethodException,
           InvocationTargetException {
-    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     settings.setHighlightPolicy(
         dateToHighlight -> {
           if (dateToHighlight.get(ChronoField.DAY_OF_MONTH) % 2 == 0) {
@@ -312,7 +312,7 @@ public class TestCalendarPanel {
           IllegalAccessException,
           NoSuchMethodException,
           InvocationTargetException {
-    DatePickerSettings dateSettings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings dateSettings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     CalendarPanel testPanel = new CalendarPanel(dateSettings);
 
     JPanel monthAndYearInnerPanel =

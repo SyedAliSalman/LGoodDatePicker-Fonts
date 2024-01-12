@@ -37,8 +37,7 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Locale;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 /** CalendarPanelAssortmentTest. */
 public class CalendarPanelAssortmentTest {
@@ -130,7 +129,7 @@ public class CalendarPanelAssortmentTest {
 
     // Create a CalendarPanel: Localized (Greek)
     Locale datePickerLocale = new Locale("el");
-    dateSettings = new DatePickerSettings(datePickerLocale);
+    dateSettings = new DatePickerSettings(datePickerLocale, new JLabel().getFont());
     dateSettings.setWeekNumbersDisplayed(true, true);
     calendarPanel = new CalendarPanel(dateSettings);
     calendarPanel.setSelectedDate(LocalDate.of(2016, Month.APRIL, 15));
@@ -255,7 +254,7 @@ public class CalendarPanelAssortmentTest {
 
     // Create a CalendarPanel: Localized (Greek)
     Locale datePickerLocale2 = new Locale("el");
-    dateSettings = new DatePickerSettings(datePickerLocale2);
+    dateSettings = new DatePickerSettings(datePickerLocale2, new JLabel().getFont());
     dateSettings.setWeekNumbersDisplayed(true, true);
     calendarPanel = new CalendarPanel(dateSettings);
     calendarPanel.setSelectedDate(LocalDate.of(2016, Month.APRIL, 15));

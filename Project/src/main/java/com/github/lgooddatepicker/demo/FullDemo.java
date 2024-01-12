@@ -72,12 +72,7 @@ import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Locale;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.ScrollPaneConstants;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 
 /**
@@ -856,7 +851,7 @@ public class FullDemo {
       int rowMarker, String labelText, String languageCode) {
     // Create the localized date picker and label.
     Locale locale = new Locale(languageCode);
-    DatePickerSettings settings = new DatePickerSettings(locale);
+    DatePickerSettings settings = new DatePickerSettings(locale, new JLabel().getFont());
     // Set a minimum size for the localized date pickers, to improve the look of the demo.
     settings.setSizeTextFieldMinimumWidth(125);
     settings.setSizeTextFieldMinimumWidthDefaultOverride(true);

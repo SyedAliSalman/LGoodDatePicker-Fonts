@@ -36,6 +36,8 @@ import java.time.ZoneId;
 import java.util.Locale;
 import org.junit.Test;
 
+import javax.swing.*;
+
 public class TestDatePicker {
 
   @Test(expected = Test.None.class /* no exception expected */)
@@ -46,7 +48,7 @@ public class TestDatePicker {
     assertTrue(
         "Default clock must be in system default time zone",
         settings.getClock().getZone().equals(ZoneId.systemDefault()));
-    settings = new DatePickerSettings(Locale.ENGLISH);
+    settings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     assertTrue("Default clock must be available", settings.getClock() != null);
     assertTrue(
         "Default clock must be in system default time zone",
@@ -68,7 +70,7 @@ public class TestDatePicker {
   public void TestCustomClockDatePicker() {
     DatePicker picker = new DatePicker();
     assertTrue(picker.getDate() == null);
-    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     settings.setClock(TestHelpers.getClockFixedToInstant(1995, Month.OCTOBER, 31, 14, 33));
     picker = new DatePicker(settings);
     picker.setDateToToday();
@@ -84,7 +86,7 @@ public class TestDatePicker {
     final Color defaultDisabledBackground =
         new DatePickerSettings().getColor(DatePickerSettings.DateArea.TextFieldBackgroundDisabled);
 
-    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH);
+    DatePickerSettings settings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     settings.setColor(DatePickerSettings.DateArea.DatePickerTextDisabled, Color.yellow);
     settings.setColor(DatePickerSettings.DateArea.TextFieldBackgroundDisabled, Color.blue);
 
@@ -94,7 +96,7 @@ public class TestDatePicker {
     picker.setEnabled(false);
     validateDatePickerDisabledColor(picker, Color.yellow, Color.blue);
 
-    picker.setSettings(new DatePickerSettings(Locale.ENGLISH));
+    picker.setSettings(new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont()));
     validateDatePickerDisabledColor(picker, defaultDisabledText, defaultDisabledBackground);
 
     picker.getSettings().setColor(DatePickerSettings.DateArea.DatePickerTextDisabled, Color.yellow);
@@ -106,7 +108,7 @@ public class TestDatePicker {
     picker.setEnabled(true);
     validateDatePickerDisabledColor(picker, Color.yellow, Color.blue);
 
-    picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH));
+    picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont()));
     validateDatePickerDisabledColor(picker, defaultDisabledText, defaultDisabledBackground);
   }
 

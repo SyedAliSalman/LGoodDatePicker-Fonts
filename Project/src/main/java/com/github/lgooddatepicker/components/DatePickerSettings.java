@@ -49,7 +49,11 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.FormatStyle;
 import java.time.temporal.WeekFields;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumMap;
+import java.util.HashMap;
+import java.util.Locale;
+import java.util.Map;
 import java.util.function.Function;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -636,14 +640,14 @@ public class DatePickerSettings {
    * values.
    */
   public DatePickerSettings() {
-    this(Locale.getDefault());
+    this(Locale.getDefault(), new JLabel().getFont());
   }
 
   /**
    * Constructor with Custom Locale, This constructs a date picker settings instance using the
    * supplied locale and language. The constructor populates all the settings with default values.
    */
-  public DatePickerSettings(Locale pickerLocale) {
+  public DatePickerSettings(Locale pickerLocale, Font font) {
     // Add all the default colors to the colors map.
     colors = new EnumMap<>(DateArea.class);
     for (DateArea area : DateArea.values()) {
@@ -657,29 +661,28 @@ public class DatePickerSettings {
     // Generate the default fonts and text colors.
     // The font object is immutable, so it's okay to sign the same font to multiple settings.
 
-    try{
-
+//    try{
 //      InputStream myStream = new BufferedInputStream(Files.newInputStream(Paths.get("nunito_sans_normal.ttf")));
-      Font customFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(this.getClass().getResourceAsStream("/nunito_sans_normal.ttf"))).deriveFont(Font.PLAIN, 14);
-      // Register the font
-      registerFont(customFont);
-
-      // Create a Font instance
-      Font defaultLabelFont = new Font(customFont.getFontName(), Font.PLAIN, 16); // Adjust size and style as needed
+//      Font customFont = Font.createFont(Font.TRUETYPE_FONT, myStream).deriveFont(16);
+//      // Register the font
+//      registerFont(customFont);
+//
+//      // Create a Font instance
+//      Font defaultLabelFont = new Font(customFont.getFontName(), Font.PLAIN, 16); // Adjust size and style as needed
 
 //      Font defaultLabelFont = new JLabel().getFont();
-      fontClearLabel = customFont;
-      fontCalendarDateLabels = customFont;
-      fontCalendarWeekdayLabels = customFont;
-      fontCalendarWeekNumberLabels = customFont;
-      fontMonthAndYearMenuLabels = customFont;
-      fontTodayLabel = customFont;
+      fontClearLabel = font;
+      fontCalendarDateLabels = font;
+      fontCalendarWeekdayLabels = font;
+      fontCalendarWeekNumberLabels = font;
+      fontMonthAndYearMenuLabels = font;
+      fontTodayLabel = font;
       Font defaultButtonFont = new JButton().getFont();
-      fontMonthAndYearNavigationButtons = customFont;
+      fontMonthAndYearNavigationButtons = font;
       Font defaultTextFieldFont = new JTextField().getFont();
-      fontValidDate = customFont;
-      fontInvalidDate = customFont;
-      fontVetoedDate = customFont;
+      fontValidDate = font;
+      fontInvalidDate = font;
+      fontVetoedDate = font;
 
       Map<TextAttribute, Boolean> additionalAttributes = new HashMap<>();
       additionalAttributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
@@ -694,9 +697,9 @@ public class DatePickerSettings {
       // Save the date picker locale.
       // This will also change all settings that most directly depend on the locale.
       setLocale(pickerLocale);
-    } catch (IOException | FontFormatException e) {
-      e.printStackTrace();
-    }
+//    } catch (IOException | FontFormatException e) {
+//      e.printStackTrace();
+//    }
   }
 
   /**

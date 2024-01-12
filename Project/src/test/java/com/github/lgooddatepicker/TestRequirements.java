@@ -34,6 +34,8 @@ import java.awt.Color;
 import java.util.Locale;
 import org.junit.Test;
 
+import javax.swing.*;
+
 // the tests in this class test basic requirements that always have to be fulfilled
 // these are not complete, feel free to extend them
 public class TestRequirements {
@@ -54,7 +56,7 @@ public class TestRequirements {
     DatePickerSettings settings;
     settings = new DatePickerSettings();
     assertTrue(settings.getLocale().equals(Locale.getDefault()));
-    settings = new DatePickerSettings(Locale.ENGLISH);
+    settings = new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont());
     assertTrue(settings.getLocale().equals(Locale.ENGLISH));
   }
 
@@ -63,7 +65,7 @@ public class TestRequirements {
     DatePicker picker;
     picker = new DatePicker();
     assertTrue(picker.getSettings().getLocale().equals(Locale.getDefault()));
-    picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH));
+    picker = new DatePicker(new DatePickerSettings(Locale.ENGLISH, new JLabel().getFont()));
     assertTrue(picker.getSettings().getLocale().equals(Locale.ENGLISH));
   }
 
