@@ -39,8 +39,6 @@ import com.privatejgoodies.forms.layout.FormLayout;
 import java.awt.*;
 import java.awt.font.TextAttribute;
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.time.Clock;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -660,26 +658,28 @@ public class DatePickerSettings {
     try{
 
 //      InputStream myStream = new BufferedInputStream(Files.newInputStream(Paths.get("nunito_sans_normal.ttf")));
-      Font customFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(this.getClass().getResourceAsStream("/nunito_sans_normal.ttf"))).deriveFont(Font.PLAIN, 14);
+//      Font customFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(this.getClass().getResourceAsStream("/nunito_sans_normal.ttf"))).deriveFont(Font.PLAIN, 14);
+      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("nunito_sans_normal.ttf"));
+      System.out.print("==> font is "+ font.getFamily() + " " + font);
       // Register the font
-      registerFont(customFont);
+      registerFont(font);
 
       // Create a Font instance
-      Font defaultLabelFont = new Font(customFont.getFontName(), Font.PLAIN, 16); // Adjust size and style as needed
+      Font defaultLabelFont = new Font(font.getFontName(), Font.PLAIN, 16); // Adjust size and style as needed
 
 //      Font defaultLabelFont = new JLabel().getFont();
-      fontClearLabel = customFont;
-      fontCalendarDateLabels = customFont;
-      fontCalendarWeekdayLabels = customFont;
-      fontCalendarWeekNumberLabels = customFont;
-      fontMonthAndYearMenuLabels = customFont;
-      fontTodayLabel = customFont;
+      fontClearLabel = font;
+      fontCalendarDateLabels = font;
+      fontCalendarWeekdayLabels = font;
+      fontCalendarWeekNumberLabels = font;
+      fontMonthAndYearMenuLabels = font;
+      fontTodayLabel = font;
       Font defaultButtonFont = new JButton().getFont();
-      fontMonthAndYearNavigationButtons = customFont;
+      fontMonthAndYearNavigationButtons = font;
       Font defaultTextFieldFont = new JTextField().getFont();
-      fontValidDate = customFont;
-      fontInvalidDate = customFont;
-      fontVetoedDate = customFont;
+      fontValidDate = font;
+      fontInvalidDate = font;
+      fontVetoedDate = font;
 
       Map<TextAttribute, Boolean> additionalAttributes = new HashMap<>();
       additionalAttributes.put(TextAttribute.STRIKETHROUGH, TextAttribute.STRIKETHROUGH_ON);
@@ -2403,6 +2403,8 @@ public class DatePickerSettings {
 
     private static void registerFont(Font font) {
       GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+      System.out.println("==> graphics environment is " + ge.toString());
+      System.out.println("==> graphics environment is " + Arrays.toString(ge.getAllFonts()));
       ge.registerFont(font);
     }
 }
