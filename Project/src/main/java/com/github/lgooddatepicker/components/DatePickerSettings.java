@@ -659,7 +659,7 @@ public class DatePickerSettings {
 
 //      InputStream myStream = new BufferedInputStream(Files.newInputStream(Paths.get("nunito_sans_normal.ttf")));
 //      Font customFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(this.getClass().getResourceAsStream("/nunito_sans_normal.ttf"))).deriveFont(Font.PLAIN, 14);
-      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("nunito_sans_normal.ttf"));
+      Font font = Font.createFont(Font.TRUETYPE_FONT, new File("font/nunito_sans_normal.ttf"));
       System.out.print("==> font is "+ font.getFamily() + " " + font);
       // Register the font
       registerFont(font);
