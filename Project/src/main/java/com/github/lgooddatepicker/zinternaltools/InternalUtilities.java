@@ -25,17 +25,10 @@ package com.github.lgooddatepicker.zinternaltools;
 import com.github.lgooddatepicker.optionalusertools.DateVetoPolicy;
 import com.github.lgooddatepicker.optionalusertools.PickerUtilities;
 import com.github.lgooddatepicker.optionalusertools.TimeVetoPolicy;
-import java.awt.Component;
-import java.awt.GraphicsConfiguration;
-import java.awt.GraphicsEnvironment;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
-import java.awt.MouseInfo;
-import java.awt.Point;
-import java.awt.Rectangle;
-import java.awt.Toolkit;
-import java.awt.Window;
+
+import java.awt.*;
 import java.io.DataInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParsePosition;
 import java.time.LocalDate;
@@ -564,5 +557,11 @@ public class InternalUtilities {
     if (editor instanceof DefaultCellEditor) {
       ((DefaultCellEditor) editor).setClickCountToStart(clickCountToStart);
     }
+  }
+
+  public static void registerFont(Font font) {
+    GraphicsEnvironment ge =
+            GraphicsEnvironment.getLocalGraphicsEnvironment();
+    ge.registerFont(font);
   }
 }
