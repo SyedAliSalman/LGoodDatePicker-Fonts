@@ -655,19 +655,13 @@ public class DatePickerSettings {
     // Generate the default fonts and text colors.
     // The font object is immutable, so it's okay to sign the same font to multiple settings.
 
-    try{
+//    try{
 
 //      InputStream myStream = new BufferedInputStream(Files.newInputStream(Paths.get("nunito_sans_normal.ttf")));
 //      Font customFont = Font.createFont(Font.TRUETYPE_FONT, Objects.requireNonNull(this.getClass().getResourceAsStream("/nunito_sans_normal.ttf"))).deriveFont(Font.PLAIN, 14);
-      Font font = Font.createFont(Font.TRUETYPE_FONT, getClass().getClassLoader().getResourceAsStream("nunito_sans_normal.ttf"));
-      System.out.print("==> font is "+ font.getFamily() + " " + font);
-      // Register the font
-      registerFont(font);
+//      Font defaultLabelFont = new Font(font.getFontName(), Font.PLAIN, 16); // Adjust size and style as needed
 
-      // Create a Font instance
-      Font defaultLabelFont = new Font(font.getFontName(), Font.PLAIN, 16); // Adjust size and style as needed
-
-//      Font defaultLabelFont = new JLabel().getFont();
+      Font font = new JLabel().getFont();
       fontClearLabel = font;
       fontCalendarDateLabels = font;
       fontCalendarWeekdayLabels = font;
@@ -694,9 +688,9 @@ public class DatePickerSettings {
       // Save the date picker locale.
       // This will also change all settings that most directly depend on the locale.
       setLocale(pickerLocale);
-    } catch (IOException | FontFormatException e) {
-      e.printStackTrace();
-    }
+//    } catch (IOException | FontFormatException e) {
+//      e.printStackTrace();
+//    }
   }
 
   /**
