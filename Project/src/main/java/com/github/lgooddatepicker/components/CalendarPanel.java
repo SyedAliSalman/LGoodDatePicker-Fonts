@@ -1633,16 +1633,16 @@ public class CalendarPanel extends JPanel {
       headerControlsPanel.add(buttonPreviousYear, CC.xy(1, 1));
 
       // ---- buttonPreviousMonth ----
-//      buttonPreviousMonth.setText(" < ");
-      try {
-        System.out.println("==> trying to fetch Image right from "+ CalendarPanel.class.getResource("/images/Left.png"));
-        ImageIcon icon = new ImageIcon(ImageIO.read(CalendarPanel.class.getResource("/images/Left.png")));
-        System.out.println("==> Completed fetching Icon " + icon.getDescription());
-        buttonPreviousMonth.setIcon(icon);
-        System.out.println("==> setting icon " + buttonPreviousMonth.getUIClassID());
-      } catch (IOException e) {
-        throw new RuntimeException(e);
-      }
+      buttonPreviousMonth.setText(" < ");
+//      try {
+//        System.out.println("==> trying to fetch Image right from "+ CalendarPanel.class.getResource("/images/Left.png"));
+//        ImageIcon icon = new ImageIcon(ImageIO.read(CalendarPanel.class.getResource("/images/Left.png")));
+//        System.out.println("==> Completed fetching Icon " + icon.getDescription());
+//        buttonPreviousMonth.setIcon(icon);
+//        System.out.println("==> setting icon " + buttonPreviousMonth.getUIClassID());
+//      } catch (IOException e) {
+//        throw new RuntimeException(e);
+//      }
       buttonPreviousMonth.setFocusable(false);
       buttonPreviousMonth.setFocusPainted(false);
       buttonPreviousMonth.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -1712,16 +1712,16 @@ public class CalendarPanel extends JPanel {
       headerControlsPanel.add(monthAndYearOuterPanel, CC.xy(4, 1));
 
       // ---- buttonNextMonth ----
-//      buttonNextMonth.setText(" > ");
-      try {
-        System.out.println("trying to fetch Image right from "+ CalendarPanel.class.getResource("/images/Right.png"));
-        ImageIcon icon = new ImageIcon(ImageIO.read(CalendarPanel.class.getResource("/images/Right.png")));
-        buttonNextMonth.setIcon(icon);
-        System.out.println("==> setting icon " + buttonNextMonth.getUIClassID());
-      } catch (IOException e) {
-        System.out.println("==> throwing exception " + e.getLocalizedMessage());
-        throw new RuntimeException(e);
-      }
+      buttonNextMonth.setText(" > ");
+//      try {
+//        System.out.println("trying to fetch Image right from "+ CalendarPanel.class.getResource("/images/Right.png"));
+//        ImageIcon icon = new ImageIcon(ImageIO.read(CalendarPanel.class.getResource("/images/Right.png")));
+//        buttonNextMonth.setIcon(icon);
+//        System.out.println("==> setting icon " + buttonNextMonth.getUIClassID());
+//      } catch (IOException e) {
+//        System.out.println("==> throwing exception " + e.getLocalizedMessage());
+//        throw new RuntimeException(e);
+//      }
       buttonNextMonth.setFocusable(false);
       buttonNextMonth.setFocusPainted(false);
       buttonNextMonth.setHorizontalTextPosition(SwingConstants.CENTER);
