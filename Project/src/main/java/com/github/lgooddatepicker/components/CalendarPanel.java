@@ -23,6 +23,7 @@
 package com.github.lgooddatepicker.components;
 
 import com.github.lgooddatepicker.components.DatePickerSettings.DateArea;
+import com.github.lgooddatepicker.demo.FullDemo;
 import com.github.lgooddatepicker.optionalusertools.CalendarBorderProperties;
 import com.github.lgooddatepicker.optionalusertools.CalendarListener;
 import com.github.lgooddatepicker.optionalusertools.DateHighlightPolicy;
@@ -37,19 +38,12 @@ import com.github.lgooddatepicker.zinternaltools.YearMonthChangeEvent;
 import com.privatejgoodies.forms.factories.CC;
 import com.privatejgoodies.forms.layout.CellConstraints;
 import com.privatejgoodies.forms.layout.FormLayout;
-import java.awt.Canvas;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.FontMetrics;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.Insets;
-import java.awt.Point;
-import java.awt.Rectangle;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.text.DateFormatSymbols;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -59,14 +53,8 @@ import java.time.YearMonth;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.Locale;
-import javax.swing.AbstractAction;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JPopupMenu;
-import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
+import javax.imageio.ImageIO;
+import javax.swing.*;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
@@ -539,7 +527,7 @@ public class CalendarPanel extends JPanel {
     weekdayLabels = new ArrayList<>();
     int weekdayLabelRowY = constantFirstWeekdayLabelCell.y;
     int weekdayLabelWidthInCells = 1;
-    int weekdayLabelHeightInCells = 3;
+    int weekdayLabelHeightInCells = 4;
     for (int i = 0; i < 7; ++i) {
       int weekdayLabelColumnX = (i + constantFirstWeekdayLabelCell.x);
       JLabel weekdayLabel = new JLabel();
@@ -1645,7 +1633,13 @@ public class CalendarPanel extends JPanel {
       headerControlsPanel.add(buttonPreviousYear, CC.xy(1, 1));
 
       // ---- buttonPreviousMonth ----
-      buttonPreviousMonth.setText(" < ");
+//      buttonPreviousMonth.setText(" < ");
+      try {
+        ImageIcon icon = new ImageIcon(ImageIO.read(CalendarPanel.class.getResource("/images/Left.png")));
+        buttonPreviousMonth.setIcon(icon);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
       buttonPreviousMonth.setFocusable(false);
       buttonPreviousMonth.setFocusPainted(false);
       buttonPreviousMonth.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -1715,7 +1709,13 @@ public class CalendarPanel extends JPanel {
       headerControlsPanel.add(monthAndYearOuterPanel, CC.xy(4, 1));
 
       // ---- buttonNextMonth ----
-      buttonNextMonth.setText(" > ");
+//      buttonNextMonth.setText(" > ");
+      try {
+        ImageIcon icon = new ImageIcon(ImageIO.read(CalendarPanel.class.getResource("/images/Right.png")));
+        buttonNextMonth.setIcon(icon);
+      } catch (IOException e) {
+        throw new RuntimeException(e);
+      }
       buttonNextMonth.setFocusable(false);
       buttonNextMonth.setFocusPainted(false);
       buttonNextMonth.setHorizontalTextPosition(SwingConstants.CENTER);
